@@ -6,10 +6,14 @@ An interactive command-line client for calling the installed null driver.
 */
 
 #include <iostream>
-//#include <IOKit/usb/USB.h>
+#include <IOKit/IOMessage.h>
+#include <IOKit/IOTypes.h>
 #include <IOKit/IOReturn.h>
 #include <IOKit/IOKitLib.h>
+
 //#include <IOKit/hidsystem/IOHIDShared.h>
+
+#include "drive.h"
 
 typedef struct {
     uint64_t foo;
@@ -99,9 +103,8 @@ static void AsyncCallback(void* refcon, IOReturn result, void** args, uint32_t n
     CFRunLoopStop(globalRunLoop);
 }
 
-int main(int argc, const char* argv[])
+int testDriver()
 {
-    printf("main");
     
     bool runProgram = true;
     
@@ -122,6 +125,11 @@ int main(int argc, const char* argv[])
     CFRunLoopSourceRef runLoopSource = nullptr;
     io_async_ref64_t asyncRef = {};
 
+    CFMutableDictionaryRef matching = IOServiceMatching("NullDriver"), properties = NULL;
+    io_registry_entry_t entry = IOServiceGetMatchingService( kIOMainPortDefault , matching );
+    IORegistryEntryCreateCFProperties( entry , &properties , NULL , 0 );
+    
+    
     /// - Tag: ClientApp_Connect
     ret = IOServiceGetMatchingServices(kIOMainPortDefault, IOServiceNameMatching(dextIdentifier), &iterator);
     
@@ -132,9 +140,15 @@ int main(int argc, const char* argv[])
     }
 
     printf("Searching for dext service...\n");
+    
+    // This is == IO_OBJECT_NULL immediately!
+    
     while ((service = IOIteratorNext(iterator)) != IO_OBJECT_NULL)
     {
+        printf("\tService %d\n",service);
+        
         // Open a connection to this user client as a server to that client, and store the instance in "service"
+        
         ret = IOServiceOpen(service, mach_task_self_, 0/*kIOHIDServerConnectType*/, &connection);
 
         if (ret == kIOReturnSuccess)
@@ -150,6 +164,7 @@ int main(int argc, const char* argv[])
         IOObjectRelease(service);
     }
     IOObjectRelease(iterator);
+    printf("Done searching\n");
 
     if (service == IO_OBJECT_NULL)
     {

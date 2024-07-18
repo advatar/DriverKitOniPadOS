@@ -48,6 +48,6 @@
 		</dict>
 	</dict>
 	<key>OSBundleUsageDescription</key>
-	<string></string>
+	<string>To connect to LED indicator</string>
 </dict>
 </plist>

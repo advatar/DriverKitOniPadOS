@@ -11,6 +11,8 @@ The IOKit Interface Generator file that declares the driver's methods.
 #include <Availability.h>
 #include <DriverKit/IOUserClient.iig>
 #include <DriverKit/IOTimerDispatchSource.iig>
+#include <DriverKit/IOService.iig>
+
 
 class NullDriver: public IOUserClient
 {

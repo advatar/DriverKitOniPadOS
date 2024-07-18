@@ -75,7 +75,7 @@ class DriverLoadingViewModel: NSObject {
     // Your dext may not start in unloaded state every time. Add logic or states to check this.
     @Published private var state: DriverLoadingStateMachine.State = .unloaded
 
-    private let dextIdentifier: String = "com.gigabitelabs.user-client.app.driver"
+    private let dextIdentifier: String = "com.svipe.user-client.app.driver"
 
     public var dextLoadingState: String {
         switch state {
@@ -100,6 +100,7 @@ extension DriverLoadingViewModel: ObservableObject {
 extension DriverLoadingViewModel {
 
     func activateMyDext() {
+        os_log("NullDriver activateMyDext")
         activateExtension(dextIdentifier)
     }
 
@@ -113,6 +114,9 @@ extension DriverLoadingViewModel {
         OSSystemExtensionManager.shared.submitRequest(request)
 
         self.state = DriverLoadingStateMachine.process(self.state, .activationStarted)
+        
+        os_log("NullDriver activated")
+ 
     }
     
     // This method isn't used in this example, but is provided for completeness.
@@ -134,7 +138,7 @@ extension DriverLoadingViewModel: OSSystemExtensionRequestDelegate {
 
         var replacementAction: OSSystemExtensionRequest.ReplacementAction
 
-        os_log("sysex actionForReplacingExtension: %@ %@", existing, ext)
+        os_log("NullDriver sysex actionForReplacingExtension: %@ %@", existing, ext)
 
         // Add appropriate logic here to determine if the extension should be
         // replaced by the new extension. Common things to check for include
@@ -152,14 +156,14 @@ extension DriverLoadingViewModel: OSSystemExtensionRequestDelegate {
 
     func requestNeedsUserApproval(_ request: OSSystemExtensionRequest) {
 
-        os_log("sysex requestNeedsUserApproval")
+        os_log("NullDriver sysex requestNeedsUserApproval")
 
         self.state = DriverLoadingStateMachine.process(self.state, .promptForApproval)
     }
 
     func request(_ request: OSSystemExtensionRequest, didFinishWithResult result: OSSystemExtensionRequest.Result) {
 
-        os_log("sysex didFinishWithResult: %d", result.rawValue)
+        os_log("NullDriver sysex didFinishWithResult: %d", result.rawValue)
 
         // The "result" may be "willCompleteAfterReboot", which would require another state.
         // This sample ignores this state for simplicity, but a production app should check for it.
@@ -169,7 +173,7 @@ extension DriverLoadingViewModel: OSSystemExtensionRequestDelegate {
 
     func request(_ request: OSSystemExtensionRequest, didFailWithError error: Error) {
 
-        os_log("sysex didFailWithError: %{public}@", error.localizedDescription)
+        os_log("NullDriver sysex didFailWithError: %{public}@", error.localizedDescription)
 
         // Some possible errors to check for:
         // Error 4: The dext identifier string in the code needs to match the one used in the project settings.

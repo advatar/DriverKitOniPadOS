@@ -108,24 +108,24 @@ struct NullDriver_IVars {
 bool NullDriver::init(void)
 {
     bool result = false;
-
-    Log("init()");
+    
+    Log("NullDriver init()");
 
     result = super::init();
     if (result != true)
     {
-        Log("init() - super::init failed.");
+        Log("NullDriver init() - super::init failed.");
         goto Exit;
     }
 
     ivars = IONewZero(NullDriver_IVars, 1);
     if (ivars == nullptr)
     {
-        Log("init() - Failed to allocate memory for ivars.");
+        Log("NullDriver init() - Failed to allocate memory for ivars.");
         goto Exit;
     }
 
-    Log("init() - Finished.");
+    Log("NullDriver init() - Finished.");
     return true;
 
 Exit:
@@ -139,21 +139,21 @@ kern_return_t IMPL(NullDriver, Start)
     ret = Start(provider, SUPERDISPATCH);
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - super::Start failed with error: 0x%08x.", ret);
+        Log("NullDriver Start() - super::Start failed with error: 0x%08x.", ret);
         goto Exit;
     }
 
     ret = IODispatchQueue::Create("NullDriverDispatchQueue", 0, 0, &ivars->dispatchQueue);
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - Failed to create dispatch queue with error: 0x%08x.", ret);
+        Log("NullDriver Start() - Failed to create dispatch queue with error: 0x%08x.", ret);
         goto Exit;
     }
 
     ret = IOTimerDispatchSource::Create(ivars->dispatchQueue, &ivars->dispatchSource);
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - Failed to create dispatch source with error: 0x%08x.", ret);
+        Log("NullDriver Start() - Failed to create dispatch source with error: 0x%08x.", ret);
         goto Exit;
     }
 
@@ -164,7 +164,7 @@ kern_return_t IMPL(NullDriver, Start)
     ret = CreateActionSimulatedAsyncEvent(sizeof(DataStruct), &ivars->simulatedAsyncDeviceResponseAction);
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - Failed to create action for simulated async event with error: 0x%08x.", ret);
+        Log("NullDriver Start() - Failed to create action for simulated async event with error: 0x%08x.", ret);
         goto Exit;
     }
     
@@ -172,18 +172,18 @@ kern_return_t IMPL(NullDriver, Start)
     ret = ivars->dispatchSource->SetHandler(ivars->simulatedAsyncDeviceResponseAction);
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - Failed to assign simulated action to handler with error: 0x%08x.", ret);
+        Log("NullDriver Start() - Failed to assign simulated action to handler with error: 0x%08x.", ret);
         goto Exit;
     }
 
     ret = RegisterService();
     if (ret != kIOReturnSuccess)
     {
-        Log("Start() - Failed to register service with error: 0x%08x.", ret);
+        Log("NullDriver Start() - Failed to register service with error: 0x%08x.", ret);
         goto Exit;
     }
 
-    Log("Start() - Finished.");
+    Log("NullDriver Start() - Finished.");
     ret = kIOReturnSuccess;
 
 Exit:
@@ -195,7 +195,7 @@ kern_return_t IMPL(NullDriver, Stop)
     kern_return_t ret = kIOReturnSuccess;
     __block _Atomic uint32_t cancelCount = 0;
 
-    Log("Stop()");
+    Log("NullDriver Stop()");
 
     // Add a cancel count for each of these items that needs to be cancelled.
     if (ivars->simulatedAsyncDeviceResponseAction != nullptr)
@@ -224,10 +224,10 @@ kern_return_t IMPL(NullDriver, Stop)
         ret = Stop(provider, SUPERDISPATCH);
         if (ret != kIOReturnSuccess)
         {
-            Log("Stop() - super::Stop failed with error: 0x%08x.", ret);
+            Log("NullDriver Stop() - super::Stop failed with error: 0x%08x.", ret);
         }
 
-        Log("Stop() - Finished.");
+        Log("NullDriver Stop() - Finished.");
 
         return ret;
     }
@@ -245,10 +245,10 @@ kern_return_t IMPL(NullDriver, Stop)
             kern_return_t status = Stop(provider, SUPERDISPATCH);
             if (status != kIOReturnSuccess)
             {
-                Log("Stop() - super::Stop failed with error: 0x%08x.", status);
+                Log("NullDriver Stop() - super::Stop failed with error: 0x%08x.", status);
             }
 
-            Log("Stop() - Finished.");
+            Log("NullDriver Stop() - Finished.");
 
             this->release();
             provider->release();
@@ -277,14 +277,14 @@ kern_return_t IMPL(NullDriver, Stop)
         ivars->callbackAction->Cancel(finalize);
     }
     
-    Log("Stop() - Cancels started, they will stop the dext later.");
+    Log("NullDriver Stop() - Cancels started, they will stop the dext later.");
 
     return ret;
 }
 
 void NullDriver::free(void)
 {
-    Log("free()");
+    Log("NullDriver free()");
 
     OSSafeReleaseNULL(ivars->simulatedAsyncDeviceResponseAction);
     OSSafeReleaseNULL(ivars->dispatchSource);
@@ -302,25 +302,25 @@ kern_return_t IMPL(NullDriver, NewUserClient)
     kern_return_t ret = kIOReturnSuccess;
     IOService* client = nullptr;
 
-    Log("NewUserClient()");
+    Log("NullDriver NewUserClient()");
 
     ret = Create(this, "UserClientProperties", &client);
     if (ret != kIOReturnSuccess)
     {
-        Log("NewUserClient() - Failed to create UserClientProperties with error: 0x%08x.", ret);
+        Log("NullDriver NewUserClient() - Failed to create UserClientProperties with error: 0x%08x.", ret);
         goto Exit;
     }
 
     *userClient = OSDynamicCast(IOUserClient, client);
     if (*userClient == NULL)
     {
-        Log("NewUserClient() - Failed to cast new client.");
+        Log("NullDriver NewUserClient() - Failed to cast new client.");
         client->release();
         ret = kIOReturnError;
         goto Exit;
     }
 
-    Log("NewUserClient() - Finished.");
+    Log("NullDriver NewUserClient() - Finished.");
 
 Exit:
     return ret;
@@ -381,11 +381,11 @@ kern_return_t NullDriver::HandleExternalScalar(IOUserClientMethodArguments* argu
     uint8_t outputCount = 0;
     uint8_t iterCount = 0;
 
-    Log("Got action type scalar");
+    Log("NullDriver Got action type scalar");
 
     if (arguments == nullptr)
     {
-        Log("Arguments were null.");
+        Log("NullDriver Arguments were null.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
@@ -393,7 +393,7 @@ kern_return_t NullDriver::HandleExternalScalar(IOUserClientMethodArguments* argu
     // Input could be spoofed by an attacker. Always make sure that it is a reasonable value.
     if (arguments->scalarInput == nullptr)
     {
-        Log("Scalar input memory is null.");
+        Log("NullDriver Scalar input memory is null.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
@@ -402,13 +402,13 @@ kern_return_t NullDriver::HandleExternalScalar(IOUserClientMethodArguments* argu
     inputCount = arguments->scalarInputCount;
     if (inputCount > 16)
     {
-        Log("Only allowing a maximum number of 16 inputs.");
+        Log("NullDriver Only allowing a maximum number of 16 inputs.");
         inputCount = 16;
     }
 
     if (arguments->scalarOutput == nullptr)
     {
-        Log("Scalar output memory is null.");
+        Log("NullDriver Scalar output memory is null.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
@@ -417,7 +417,7 @@ kern_return_t NullDriver::HandleExternalScalar(IOUserClientMethodArguments* argu
     outputCount = arguments->scalarOutputCount;
     if (outputCount > 16)
     {
-        Log("Only allowing a maximum number of 16 outputs.");
+        Log("NullDriver Only allowing a maximum number of 16 outputs.");
         outputCount = 16;
     }
 
@@ -426,7 +426,7 @@ kern_return_t NullDriver::HandleExternalScalar(IOUserClientMethodArguments* argu
     for (int16_t index = 0; index < iterCount; ++index)
     {
         arguments->scalarOutput[index] = arguments->scalarInput[index] + 1;
-        Log("%llu %llu", arguments->scalarInput[index], arguments->scalarOutput[index]);
+        Log("NullDriver %llu %llu", arguments->scalarInput[index], arguments->scalarOutput[index]);
     }
 
 Exit:
@@ -444,11 +444,11 @@ kern_return_t NullDriver::HandleExternalStruct(IOUserClientMethodArguments* argu
     IOMemoryMap* outputMap = nullptr;
 
 
-    Log("Got action type struct");
+    Log("NullDriver Got action type struct");
 
     if (arguments == nullptr)
     {
-        Log("Arguments were null.");
+        Log("NullDriver Arguments were null.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
@@ -462,7 +462,7 @@ kern_return_t NullDriver::HandleExternalStruct(IOUserClientMethodArguments* argu
         ret = arguments->structureInputDescriptor->CreateMapping(0, 0, 0, 0, 0, &inputMap);
         if (ret != kIOReturnSuccess)
         {
-            Log("Failed to create mapping for descriptor with error: 0x%08x", ret);
+            Log("NullDriver Failed to create mapping for descriptor with error: 0x%08x", ret);
             PrintExtendedErrorInfo(ret);
             ret = kIOReturnBadArgument;
             goto Exit;
@@ -472,22 +472,22 @@ kern_return_t NullDriver::HandleExternalStruct(IOUserClientMethodArguments* argu
     }
     else
     {
-        Log("Both structureInput and structureInputDescriptor were null.");
+        Log("NullDriver Both structureInput and structureInputDescriptor were null.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
 
     if (input == nullptr)
     {
-        Log("Failed to get input.");
+        Log("NullDriver Failed to get input.");
         ret = kIOReturnBadArgument;
         goto Exit;
     }
-    Log("Input - %llu, %llu", input->foo, input->bar);
+    Log("NullDriver Input - %llu, %llu", input->foo, input->bar);
 
     output.foo = input->foo + 1;
     output.bar = input->bar + 10;
-    Log("Output - %llu, %llu", output.foo, output.bar);
+    Log("NullDriver Output - %llu, %llu", output.foo, output.bar);
 
     // Memory is not passed from the caller into the dext.
     // The dext needs to create its own OSData to hold this information in order to pass it back to the caller.
@@ -495,7 +495,7 @@ kern_return_t NullDriver::HandleExternalStruct(IOUserClientMethodArguments* argu
     {
         if (sizeof(OversizedDataStruct) > arguments->structureOutputMaximumSize)
         {
-            Log("Required output size of %lu is larger than the given maximum size of %llu. Failing.", sizeof(OversizedDataStruct), arguments->structureOutputMaximumSize);
+            Log("NullDriver Required output size of %lu is larger than the given maximum size of %llu. Failing.", sizeof(OversizedDataStruct), arguments->structureOutputMaximumSize);
         }
 
         arguments->structureOutputDescriptor->CreateMapping(0, 0, 0, 0, 0, &outputMap);
@@ -565,12 +565,12 @@ kern_return_t NullDriver::HandleExternalCheckedScalar(void* reference, IOUserCli
 
     kern_return_t ret = kIOReturnSuccess;
 
-    Log("Got action type checked scalar");
+    Log("NullDriver Got action type checked scalar");
 
     for (int16_t index = 0; index < arguments->scalarOutputCount; ++index)
     {
         arguments->scalarOutput[index] = arguments->scalarInput[index] + 1;
-        Log("%llu %llu", arguments->scalarInput[index], arguments->scalarOutput[index]);
+        Log("NullDriver %llu %llu", arguments->scalarInput[index], arguments->scalarOutput[index]);
     }
 
     return ret;
@@ -585,7 +585,7 @@ kern_return_t NullDriver::HandleExternalCheckedStruct(void* reference, IOUserCli
     DataStruct* input = nullptr;
     DataStruct output = {};
 
-    Log("Got action type checked struct");
+    Log("NullDriver Got action type checked struct");
 
     input = (DataStruct*)arguments->structureInput->getBytesNoCopy();
 
@@ -599,7 +599,7 @@ kern_return_t NullDriver::HandleExternalCheckedStruct(void* reference, IOUserCli
 
 kern_return_t NullDriver::RegisterAsyncCallback(void* reference, IOUserClientMethodArguments* arguments)
 {
-    Log("Got new async callback");
+    Log("NullDriver Got new async callback");
 
     DataStruct* input = nullptr;
     DataStruct output = {};
@@ -607,7 +607,7 @@ kern_return_t NullDriver::RegisterAsyncCallback(void* reference, IOUserClientMet
     /// - Tag: RegisterAsyncCallback_StoreCompletion
     if (arguments->completion == nullptr)
     {
-        Log("Got a null completion.");
+        Log("NullDriver Got a null completion.");
         return kIOReturnBadArgument;
     }
 
@@ -636,7 +636,7 @@ kern_return_t NullDriver::RegisterAsyncCallback(void* reference, IOUserClientMet
     const uint64_t twoSecondsInNanoSeconds = 2000000000;
     uint64_t currentTime = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
 
-    Log("Sleeping async...");
+    Log("NullDriver Sleeping async...");
     ivars->dispatchSource->WakeAtTime(kIOTimerClockMonotonicRaw, currentTime + fiveSecondsInNanoSeconds, twoSecondsInNanoSeconds);
 
     return kIOReturnSuccess;
@@ -644,7 +644,7 @@ kern_return_t NullDriver::RegisterAsyncCallback(void* reference, IOUserClientMet
 
 kern_return_t NullDriver::HandleAsyncRequest(void* reference, IOUserClientMethodArguments* arguments)
 {
-    Log("Got action type async.");
+    Log("NullDriver Got action type async.");
 
     // This function executes synchronously and blocks the caller,
     // so it needs to check its inputs as fast as possible,
@@ -653,7 +653,7 @@ kern_return_t NullDriver::HandleAsyncRequest(void* reference, IOUserClientMethod
 
     if (ivars->callbackAction == nullptr)
     {
-        Log("Callback action not available.");
+        Log("NullDriver Callback action not available.");
         return kIOReturnError;
     }
 
@@ -666,7 +666,7 @@ kern_return_t NullDriver::HandleAsyncRequest(void* reference, IOUserClientMethod
     const uint64_t twoSecondsInNanoSeconds = 2000000000;
     uint64_t currentTime = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);
 
-    Log("Sleeping async...");
+    Log("NullDriver Sleeping async...");
     ivars->dispatchSource->WakeAtTime(kIOTimerClockMonotonicRaw, currentTime + fiveSecondsInNanoSeconds, twoSecondsInNanoSeconds);
 
     return kIOReturnSuccess;
@@ -675,7 +675,7 @@ kern_return_t NullDriver::HandleAsyncRequest(void* reference, IOUserClientMethod
 // MARK: SimulatedAsyncEvent Callback
 void IMPL(NullDriver, SimulatedAsyncEvent)
 {
-    Log("Woke async at time: %llu!", time);
+    Log("NullDriver Woke async at time: %llu!", time);
 
     // Get back our data previously stored in OSAction.
     DataStruct* input = (DataStruct*)action->GetReference();
@@ -697,7 +697,7 @@ void IMPL(NullDriver, SimulatedAsyncEvent)
 // MARK: Detail Helpers
 void NullDriver::PrintExtendedErrorInfo(kern_return_t ret)
 {
-    Log("\tSystem: 0x%02x", err_get_system(ret));
-    Log("\tSubsystem: 0x%03x", err_get_sub(ret));
-    Log("\tCode: 0x%04x", err_get_code(ret));
+    Log("NullDriver \tSystem: 0x%02x", err_get_system(ret));
+    Log("NullDriver \tSubsystem: 0x%03x", err_get_sub(ret));
+    Log("NullDriver \tCode: 0x%04x", err_get_code(ret));
 }

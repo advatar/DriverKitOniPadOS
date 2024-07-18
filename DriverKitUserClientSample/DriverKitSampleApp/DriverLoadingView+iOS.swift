@@ -6,9 +6,11 @@
 //  Copyright © 2023 Apple. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 
 struct DriverLoadingView_iOS: View {
+
     var body: some View {
         VStack(alignment: .center) {
             Text("Driver Manager")
@@ -22,6 +24,8 @@ struct DriverLoadingView_iOS: View {
                         Text("Open settings to enable driver")
                     }
                 )
+            }.task {
+                testDriver()
             }
         }.frame(width: 500, height: 200, alignment: .center)
     }

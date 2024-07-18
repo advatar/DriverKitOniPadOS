@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C794B722C44321A005F8F4A /* drive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C794B712C44321A005F8F4A /* drive.cpp */; };
+		0C794B752C443310005F8F4A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C794B742C443310005F8F4A /* IOKit.framework */; };
 		1AA5072F2AD50CE7005A9886 /* DriverLoadingView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5072E2AD50CE7005A9886 /* DriverLoadingView+iOS.swift */; platformFilter = ios; };
 		1AA507312AD50DBC005A9886 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1AA507302AD50DBC005A9886 /* Settings.bundle */; };
 		52DBF5EB25E5ECF600CCE289 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52DBF5EA25E5ECF600CCE289 /* main.cpp */; };
@@ -21,7 +23,7 @@
 		62A475662515567200B50752 /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A475652515567200B50752 /* DriverKit.framework */; };
 		62A475692515567200B50752 /* NullDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A475682515567200B50752 /* NullDriver.cpp */; };
 		62A4756B2515567200B50752 /* NullDriver.iig in Sources */ = {isa = PBXBuildFile; fileRef = 62A4756A2515567200B50752 /* NullDriver.iig */; };
-		62A475702515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 62A475632515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		62A475702515567200B50752 /* com.svipe.user-client.app.driver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 62A475632515567200B50752 /* com.svipe.user-client.app.driver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +43,7 @@
 			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
 			dstSubfolderSpec = 16;
 			files = (
-				62A475702515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext in Embed System Extensions */,
+				62A475702515567200B50752 /* com.svipe.user-client.app.driver.dext in Embed System Extensions */,
 			);
 			name = "Embed System Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +51,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C794B712C44321A005F8F4A /* drive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = drive.cpp; sourceTree = "<group>"; };
+		0C794B732C44321C005F8F4A /* DriverKitSampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DriverKitSampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C794B742C443310005F8F4A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		0C794B762C443392005F8F4A /* drive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drive.h; sourceTree = "<group>"; };
+		0C794B772C443451005F8F4A /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/usr/lib/libc.tbd; sourceTree = DEVELOPER_DIR; };
 		1AA5072E2AD50CE7005A9886 /* DriverLoadingView+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverLoadingView+iOS.swift"; sourceTree = "<group>"; };
 		1AA507302AD50DBC005A9886 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		52DBF5DC25E5ECF400CCE289 /* CppUserClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CppUserClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +73,7 @@
 		62A475572515566600B50752 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		62A475592515566600B50752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A4755A2515566600B50752 /* DriverKitSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriverKitSampleApp.entitlements; sourceTree = "<group>"; };
-		62A475632515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = "com.gigabitelabs.user-client.app.driver.dext"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62A475632515567200B50752 /* com.svipe.user-client.app.driver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = "com.svipe.user-client.app.driver.dext"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A475652515567200B50752 /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = System/Library/Frameworks/DriverKit.framework; sourceTree = SDKROOT; };
 		62A475682515567200B50752 /* NullDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NullDriver.cpp; sourceTree = "<group>"; };
 		62A4756A2515567200B50752 /* NullDriver.iig */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.iig; path = NullDriver.iig; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C794B752C443310005F8F4A /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				62A4754E2515566500B50752 /* DriverKitSampleApp.app */,
-				62A475632515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext */,
+				62A475632515567200B50752 /* com.svipe.user-client.app.driver.dext */,
 				52DBF5DC25E5ECF400CCE289 /* CppUserClient.app */,
 			);
 			name = Products;
@@ -151,15 +159,18 @@
 		62A4754F2515566500B50752 /* DriverKitSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				0C794B712C44321A005F8F4A /* drive.cpp */,
+				0C794B762C443392005F8F4A /* drive.h */,
+				62A475542515566600B50752 /* Assets.xcassets */,
+				62A4755A2515566600B50752 /* DriverKitSampleApp.entitlements */,
 				62A475502515566500B50752 /* DriverKitSampleApp.swift */,
 				629413C42518E5D900478C2B /* DriverLoadingView.swift */,
-				629413C62518E61500478C2B /* DriverLoadingViewModel.swift */,
-				62A475542515566600B50752 /* Assets.xcassets */,
-				62A475592515566600B50752 /* Info.plist */,
-				62A4755A2515566600B50752 /* DriverKitSampleApp.entitlements */,
-				62A475562515566600B50752 /* Preview Content */,
 				1AA5072E2AD50CE7005A9886 /* DriverLoadingView+iOS.swift */,
+				629413C62518E61500478C2B /* DriverLoadingViewModel.swift */,
+				62A475592515566600B50752 /* Info.plist */,
+				62A475562515566600B50752 /* Preview Content */,
 				1AA507302AD50DBC005A9886 /* Settings.bundle */,
+				0C794B732C44321C005F8F4A /* DriverKitSampleApp-Bridging-Header.h */,
 			);
 			path = DriverKitSampleApp;
 			sourceTree = "<group>";
@@ -175,6 +186,8 @@
 		62A475642515567200B50752 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C794B772C443451005F8F4A /* libc.tbd */,
+				0C794B742C443310005F8F4A /* IOKit.framework */,
 				6286B478252E3F4900A9A513 /* CoreFoundation.framework */,
 				629413EB2518F5AB00478C2B /* IOKit.framework */,
 				62A475652515567200B50752 /* DriverKit.framework */,
@@ -274,7 +287,7 @@
 			);
 			name = NullDriver;
 			productName = MyDext;
-			productReference = 62A475632515567200B50752 /* com.gigabitelabs.user-client.app.driver.dext */;
+			productReference = 62A475632515567200B50752 /* com.svipe.user-client.app.driver.dext */;
 			productType = "com.apple.product-type.driver-extension";
 		};
 /* End PBXNativeTarget section */
@@ -283,9 +296,10 @@
 		62A4752F2515563B00B50752 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					52DBF5DB25E5ECF400CCE289 = {
@@ -293,6 +307,7 @@
 					};
 					62A4754D2515566500B50752 = {
 						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1600;
 					};
 					62A475622515567200B50752 = {
 						CreatedOnToolsVersion = 12.0;
@@ -363,6 +378,7 @@
 				629413C72518E61500478C2B /* DriverLoadingViewModel.swift in Sources */,
 				1AA5072F2AD50CE7005A9886 /* DriverLoadingView+iOS.swift in Sources */,
 				629413C52518E5D900478C2B /* DriverLoadingView.swift in Sources */,
+				0C794B722C44321A005F8F4A /* drive.cpp in Sources */,
 				62A475512515566500B50752 /* DriverKitSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,10 +409,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CppUserClient/CppUserClient.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CppUserClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -404,9 +421,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -416,10 +436,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CppUserClient/CppUserClient.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CppUserClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -427,9 +448,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -438,6 +462,7 @@
 			baseConfigurationReference = F32C00003CD45082E71156D7 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -468,9 +493,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -500,6 +527,7 @@
 			baseConfigurationReference = F32C00003CD45082E71156D7 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -530,9 +558,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -556,12 +586,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DriverKitSampleApp/DriverKitSampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DriverKitSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DriverKitSampleApp/Info.plist;
@@ -570,11 +602,13 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DriverKitSampleApp/DriverKitSampleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -586,12 +620,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DriverKitSampleApp/DriverKitSampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DriverKitSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DriverKitSampleApp/Info.plist;
@@ -600,11 +636,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DriverKitSampleApp/DriverKitSampleApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -618,10 +655,10 @@
 				CODE_SIGN_ENTITLEMENTS = NullDriver/NullDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				DRIVERKIT_DEPLOYMENT_TARGET = 20.0;
 				INFOPLIST_FILE = NullDriver/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.app.driver";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.app.driver";
 				PRODUCT_NAME = "$(inherited)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -638,10 +675,10 @@
 				CODE_SIGN_ENTITLEMENTS = NullDriver/NullDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYU2SZHRLR;
+				DEVELOPMENT_TEAM = 22PS7P6M6M;
 				DRIVERKIT_DEPLOYMENT_TARGET = 20.0;
 				INFOPLIST_FILE = NullDriver/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gigabitelabs.user-client.app.driver";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.svipe.user-client.app.driver";
 				PRODUCT_NAME = "$(inherited)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;

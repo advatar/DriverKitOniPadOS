@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1220"
+   LastUpgradeVersion = "1520"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "62A475622515567200B50752"
-               BuildableName = "com.gigabitelabs.user-client.app.driver.dext"
+               BuildableName = "com.svipe.user-client.app.driver.dext"
                BlueprintName = "NullDriver"
                ReferencedContainer = "container:DriverKitUserClientSample.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "62A475622515567200B50752"
-            BuildableName = "com.gigabitelabs.user-client.app.driver.dext"
+            BuildableName = "com.svipe.user-client.app.driver.dext"
             BlueprintName = "NullDriver"
             ReferencedContainer = "container:DriverKitUserClientSample.xcodeproj">
          </BuildableReference>
