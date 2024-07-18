@@ -1,3 +1,10 @@
+
+This project builds fine but the driver never shows up on the iPad. So it can not be enabled and further developed.
+
+The idea is to make a driver for https://busylight.com/products/busylight-uc-omega/
+
+
+
 # DriverKitUserClientSample
 
 An updated version of Apple's DriverKit sample project "DriverKitUserClientSample" with iPadOS support.
